@@ -1,0 +1,18 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class JumpUpEffect : IBuffEffect
+{
+	public BuffType BuffType => BuffType.SpeedUp;
+	public float BuffValue { get; }
+	public float Duration { get; }
+
+	public JumpUpEffect(float value, float duration)
+	{
+		BuffValue = value;
+		Duration = duration;
+	}
+
+	public void Apply(Player player) => player.ApplyBuff(this);
+}

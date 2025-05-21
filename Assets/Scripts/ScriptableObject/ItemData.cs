@@ -16,14 +16,8 @@ public enum ConsumableItemType
 	JumpUp
 }
 
-public interface IItemEffect
-{
-	void Apply(Player player);
-}
-
-
 [Serializable]
-public class ConsumableItemData : IItemEffect
+public class ConsumableItemData
 {
 	public ConsumableItemType type;
 	public float value;
@@ -36,10 +30,10 @@ public class ConsumableItemData : IItemEffect
 				player.condition.Heal(value);
 				break;
 			case ConsumableItemType.SpeedUp:
-				player.controller.moveSpeed += value;
+				player.ApplyBuff(new SpeedUpEffect(value, 5f));
 				break;
 			case ConsumableItemType.JumpUp:
-				player.controller.jumpPower += value;
+				player.ApplyBuff(new JumpUpEffect(value, 5f));
 				break;
 		}
 	}

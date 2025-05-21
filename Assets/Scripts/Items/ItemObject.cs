@@ -38,7 +38,10 @@ public class ItemObject : MonoBehaviour, IInteractable
 
 		for (int i = 0; i < itemData.consumables.Length; i++)
 		{
-			itemData.consumables[i].Apply(player);
+			if (itemData.type == ItemType.Consumable)
+			{
+				itemData.consumables[i].Apply(player);
+			}
 		}
 
 		Destroy(gameObject);
