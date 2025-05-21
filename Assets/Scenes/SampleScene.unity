@@ -287,7 +287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC548\uB155\uD558\uC138\uC694"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1df4bac4d4d9981449522b1df0077692, type: 2}
   m_sharedMaterial: {fileID: 321608988211256296, guid: 1df4bac4d4d9981449522b1df0077692, type: 2}
@@ -2086,6 +2086,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3403740992612217523, guid: 3e67ab75300c52444a24af9432cf6548, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: f55a58cbc39b9934ab1d44278680ca23, type: 2}
     - target: {fileID: 4380823952027196698, guid: 3e67ab75300c52444a24af9432cf6548, type: 3}
       propertyPath: m_Name
       value: Item_Heart
@@ -2153,6 +2157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_SpeedUp
       objectReference: {fileID: 0}
+    - target: {fileID: 2264207402385134522, guid: bb44192be0a766f448b94dd1b72a6312, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 59f165f9d6e9b9e4e9794a0b94b394dd, type: 2}
     - target: {fileID: 3990009746487341094, guid: bb44192be0a766f448b94dd1b72a6312, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
