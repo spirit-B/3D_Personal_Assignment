@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
 	private Dictionary<BuffType, Coroutine> activeBuffs = new();
 
+	// 버프가 적용되기 전 수치들을 기록할 멤버변수
 	private float preMoveSpeed;
 	private float preJumpPower;
 
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
 		activeBuffs.Remove(effect.BuffType);
 	}
 
+	// 반복 아이템 적용 시 원래 값을 복원해주기 위한 메서드
 	private void RestoreStat(BuffType type)
 	{
 		switch (type)

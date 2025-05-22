@@ -1487,7 +1487,7 @@ MonoBehaviour:
   currentValue: 0
   startValue: 100
   maxValue: 100
-  passiveValue: 1
+  passiveValue: 20
   uiBar: {fileID: 445878221}
 --- !u!114 &1587222858
 MonoBehaviour:

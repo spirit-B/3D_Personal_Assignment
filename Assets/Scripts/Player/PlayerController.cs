@@ -85,7 +85,10 @@ public class PlayerController : MonoBehaviour
 	{
 		if (context.phase == InputActionPhase.Started && IsGrounded())
 		{
-			_rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+			if (CharacterManager.Instance.Player.condition.UseStamina(20f))
+			{
+				_rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+			}
 		}
 	}
 
