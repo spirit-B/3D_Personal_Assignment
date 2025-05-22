@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
 	private Vector2 mouseDelta;
 	public bool canLook = true;
 
+	[Header("Third Person Point View")]
+	public Camera firstPersonPointViewCamera;
+	public Camera ThirdPersonPointViewCamera;
+	private bool isFirstPersonPointView = true;
+
 	private Rigidbody _rigidbody;
 
 	private void Awake()
@@ -29,8 +34,19 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
 	{
-		// 보는 방향을 정면으로 고정시켜주기 위함
-		Cursor.lockState = CursorLockMode.Locked;
+		// 초기 세팅은 1인칭 뷰
+		SwitchToFirstPersonPointView();
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.V))
+		{
+			isFirstPersonPointView = !isFirstPersonPointView;
+
+			if (isFirstPersonPointView) SwitchToFirstPersonPointView();
+			else SwitchToThirdPersonPointView();
+		}
 	}
 
 	private void FixedUpdate()
@@ -40,9 +56,11 @@ public class PlayerController : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (canLook)
+		if (canLook && isFirstPersonPointView)
 		{
 			CameraLook();
+			// 보는 방향을 정면으로 고정시켜주기 위함
+			Cursor.lockState = CursorLockMode.Locked;
 		}
 	}
 
@@ -110,5 +128,17 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	private void SwitchToFirstPersonPointView()
+	{
+		firstPersonPointViewCamera.enabled = true;
+		ThirdPersonPointViewCamera.enabled = false;
+	}
+
+	private void SwitchToThirdPersonPointView()
+	{
+		firstPersonPointViewCamera.enabled = false;
+		ThirdPersonPointViewCamera.enabled = true;
 	}
 }
