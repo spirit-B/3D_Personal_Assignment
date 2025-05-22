@@ -10,17 +10,23 @@ public class Player : MonoBehaviour
 
 	private Dictionary<BuffType, Coroutine> activeBuffs = new();
 
+	private float preMoveSpeed;
+	private float preJumpPower;
+
 	private void Awake()
 	{
 		CharacterManager.Instance.Player = this;
 		controller = GetComponent<PlayerController>();
 		condition = GetComponent<PlayerCondition>();
+		preMoveSpeed = controller.moveSpeed;
+		preJumpPower = controller.jumpPower;
 	}
 
 	public void ApplyBuff(IBuffEffect effect)
 	{
 		if (activeBuffs.ContainsKey(effect.BuffType))
 		{
+			RestoreStat(effect.BuffType);
 			StopCoroutine(activeBuffs[effect.BuffType]);
 			activeBuffs.Remove(effect.BuffType);
 		}
@@ -43,16 +49,20 @@ public class Player : MonoBehaviour
 
 		yield return new WaitForSeconds(effect.Duration);
 
-		switch (effect.BuffType)
+		RestoreStat(effect.BuffType);
+		activeBuffs.Remove(effect.BuffType);
+	}
+
+	private void RestoreStat(BuffType type)
+	{
+		switch (type)
 		{
 			case BuffType.SpeedUp:
-				controller.moveSpeed -= effect.BuffValue;
+				controller.moveSpeed = preMoveSpeed;
 				break;
 			case BuffType.JumpUp:
-				controller.jumpPower -= effect.BuffValue;
+				controller.jumpPower = preJumpPower;
 				break;
 		}
-
-		activeBuffs.Remove(effect.BuffType);
 	}
 }
