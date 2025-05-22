@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
 	private Rigidbody _rigidbody;
 
+	[SerializeField]
+	private ThirdPersonViewCameraFollow thirdPersonViewCamFollow;
+
 	private void Awake()
 	{
 		_rigidbody = GetComponent<Rigidbody>();
@@ -61,6 +64,14 @@ public class PlayerController : MonoBehaviour
 			CameraLook();
 			// 보는 방향을 정면으로 고정시켜주기 위함
 			Cursor.lockState = CursorLockMode.Locked;
+		}
+		else if (canLook && !isFirstPersonPointView)
+		{
+			Vector3 lookDir = Quaternion.Euler(transform.position.x, thirdPersonViewCamFollow.CurrentX, 0) * Vector3.forward;
+			lookDir.y = 0f;
+
+			Quaternion targetRotation = Quaternion.LookRotation(lookDir);
+			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
 		}
 	}
 
