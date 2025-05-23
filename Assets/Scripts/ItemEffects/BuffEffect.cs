@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 버프 타입
 public enum BuffType
 {
 	SpeedUp,

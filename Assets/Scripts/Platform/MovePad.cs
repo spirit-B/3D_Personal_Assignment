@@ -27,6 +27,7 @@ public class MovePad : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		// 특정 위치에 다다르면 일정 시간동안 발판이 멈춤
 		if (isWaiting)
 		{
 			waitTimer += Time.deltaTime;
@@ -39,14 +40,16 @@ public class MovePad : MonoBehaviour
 			return;
 		}
 
+		// true : 발판이 위로 움직임
+		// false : 발판이 아래로 움직임
 		Vector3 targetPosition = movingUp ? topPosition : bottomPosition;
+
+		// 발판이 targetPosition으로 움직임
 		transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
 		if (Vector3.Distance(transform.position, targetPosition) <= 0.01f)
 		{
-			Debug.Log("목적지 도착");
 			isWaiting = true;
-			Debug.Log($"isWaiting : {isWaiting}");
 		}
 	}
 }

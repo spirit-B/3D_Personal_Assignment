@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
 			Vector3 lookDir = Quaternion.Euler(transform.position.x, thirdPersonViewCamFollow.CurrentX, 0) * Vector3.forward;
 			lookDir.y = 0f;
 
+			// 카메라가 회전하는 방향으로 플레이어가 정면을 보게 회전시킴
 			Quaternion targetRotation = Quaternion.LookRotation(lookDir);
 			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
 		}
